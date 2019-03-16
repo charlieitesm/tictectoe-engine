@@ -1,9 +1,54 @@
+from argparse import ArgumentParser
+
+from L8.constants.constants import GameMode, TypeOfUI
+from L8.game.game import GameFactory
+
+VERSION = "v0.1"
+
+
 def main():
-    pass
+    args = parse_args()
+    game = GameFactory.build_game(args)
+    game.play()
 
 
 def parse_args():
-    pass
+    """Parse args with argparse
+    :returns: args
+    """
+    parser = ArgumentParser(description=f"TicTecToe Engine {VERSION} - A Board Game engine!")
+
+    parser.add_argument('--game-mode', '-m',
+                        default='local',
+                        choices=['local', 'client', 'server'],
+                        help="The kind of game mode you want to play: A locally hosted game, a client mode to connect"
+                             "to a server, or start a server so that clients can connect to and play.")
+
+    parser.add_argument('--human-players', '-l',
+                        metavar='N',
+                        choices=[0, 1, 2],
+                        type=int,
+                        default=2,
+                        help="The number of human players. The rest of the players will be controlled by the CPU.")
+
+    parser.add_argument('--ui', '-u',
+                        default='console',
+                        choices=['console'],
+                        help="The type of UI that you want the human players to communicate with")
+
+    args = parser.parse_args()
+
+    if args.game_mode == "local":
+        args.game_mode = GameMode.LOCAL
+    elif args.game_mode == "client":
+        args.game_mode = GameMode.CLIENT
+    else:
+        args.game_mode = GameMode.SERVER
+
+    if args.ui == "console":
+        args.ui = TypeOfUI.CONSOLE
+
+    return args
 
 
 if __name__ == '__main__':

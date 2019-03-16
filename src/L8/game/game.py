@@ -1,4 +1,5 @@
 from abc import abstractmethod, ABC
+from argparse import Namespace
 
 from L8.board.board import Board
 
@@ -6,7 +7,7 @@ from L8.board.board import Board
 class Game(ABC):
 
     @abstractmethod
-    def init(self):
+    def initialize(self):
         raise NotImplementedError
 
     @abstractmethod
@@ -24,3 +25,10 @@ class Game(ABC):
     @abstractmethod
     def finish_game(self):
         raise NotImplementedError
+
+
+class GameFactory:
+
+    @staticmethod
+    def build_game(args: Namespace) -> Game:
+        pass
