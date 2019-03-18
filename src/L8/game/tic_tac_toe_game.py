@@ -6,9 +6,12 @@ from L8.game.game import Game
 from L8.game.local_game import LocalGame
 from L8.messages.english import TICTACTOE_ENDING_MESSAGE, TICTACTOE_DRAW_MESSAGE, WINNER_MESSAGE
 from L8.player.player import Player
+from L8.token.token import Token
 
 
 class TicTacToeGame(Game, ABC):
+
+    _LEGAL_TOKENS = [Token("X"), Token("O")]
 
     def __init__(self, players: list):
         super().__init__(TicTacToeBoard(), players)
