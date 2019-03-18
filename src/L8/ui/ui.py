@@ -28,7 +28,7 @@ class ConsoleUI(UI):
         print("Initializing console UI")
 
     def input(self, message: str) -> str:
-        input(f"{message}: ")
+        return input(f"{message}: ")
 
     def output(self, message: str):
         print(message)
