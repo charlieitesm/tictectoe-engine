@@ -4,13 +4,15 @@ from argparse import Namespace
 from L8.board.board import Board
 from L8.constants.constants import MOVE, TOKEN
 from L8.messages.english import ILLEGAL_MOVE
+from L8.player.player import Player
 
 
 class Game(ABC):
 
-    def __init__(self):
-        self.board = None
-        self.players = None
+    def __init__(self, board: Board, players: list):
+        self.board = board
+        self.players = players
+        self.winner = None
 
     @abstractmethod
     def initialize_resources(self):
@@ -34,15 +36,15 @@ class Game(ABC):
                 move = player.make_move(self.board)
 
                 # Check that the move is legal in the context of the board
-                while not self.is_valid_move(move):
+                while not self.is_valid_move(move, player):
                     player.ui.output(ILLEGAL_MOVE)
                     move = player.make_move(self.board)
 
                 # Apply the player's move to the board since we now know it was legal
                 move_x, move_y = move[MOVE]
-                self.board[move_x][move_y] = move[TOKEN]
+                self.board.current_state[move_x][move_y] = move[TOKEN]
 
-                is_game_over_yet = self.is_game_over(self.board)
+                is_game_over_yet = self.is_game_over()
 
                 # If the game has ended, break the player loop which in turn will break the game loop
                 if is_game_over_yet:
@@ -53,11 +55,11 @@ class Game(ABC):
         self.release_resources()
 
     @abstractmethod
-    def is_valid_move(self, move: dict) -> bool:
+    def is_valid_move(self, move: dict, player: Player) -> bool:
         raise NotImplementedError
 
     @abstractmethod
-    def is_game_over(self, board: Board) -> bool:
+    def is_game_over(self) -> bool:
         raise NotImplementedError
 
     @abstractmethod
@@ -67,6 +69,16 @@ class Game(ABC):
     @abstractmethod
     def release_resources(self):
         raise NotImplementedError
+
+    def token_to_player(self, token_str: str) -> Player:
+        """
+        Get the player holding the token represented by token_str
+        :param token_str: a str representing the token to look for
+        :return: a Player holding the token represented by token_str, None if no one was found
+        """
+        for p in self.players:
+            if token_str == str(p.token):
+                return p
 
 
 class GameFactory:
