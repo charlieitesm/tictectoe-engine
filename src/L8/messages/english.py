@@ -5,7 +5,11 @@ FINISH_LOCAL_GAME = "Finishing local game..."
 
 # Game messages
 ILLEGAL_MOVE = "The move is illegal, please try again..."
+WINNER_MESSAGE = "The winner is:"
 
+# TicTacToe messages
+TICTACTOE_ENDING_MESSAGE = "GAME OVER! Final results:"
+TICTACTOE_DRAW_MESSAGE = "It's a Draw!"
 
 # Human Player messages
 ENTER_YOUR_MOVE = "Enter your comma-separated move"
