@@ -1,5 +1,4 @@
 from abc import abstractmethod, ABC
-from argparse import Namespace
 
 from L8.board.board import Board
 from L8.constants.constants import MOVE, TOKEN
@@ -79,10 +78,3 @@ class Game(ABC):
         for p in self.players:
             if token_str == str(p.token):
                 return p
-
-
-class GameFactory:
-
-    @staticmethod
-    def build_game(args: Namespace) -> Game:
-        raise NotImplementedError

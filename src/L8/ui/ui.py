@@ -3,6 +3,9 @@ from abc import abstractmethod, ABC
 
 class UI(ABC):
 
+    def __init__(self):
+        self.initialize_ui()
+
     @abstractmethod
     def initialize_ui(self):
         raise NotImplementedError
@@ -17,6 +20,9 @@ class UI(ABC):
 
 
 class ConsoleUI(UI):
+
+    def __init__(self):
+        super().__init__()
 
     def initialize_ui(self):
         print("Initializing console UI")

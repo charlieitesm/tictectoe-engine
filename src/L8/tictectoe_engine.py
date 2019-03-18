@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 
-from L8.constants.constants import GameMode, TypeOfUI
-from L8.game.game import GameFactory
+from L8.constants.constants import GameMode, TypeOfUI, GameName
+from L8.game.game_factory import GameFactory
 from L8.messages.english import SHUTTING_DOWN
 
 VERSION = "v0.1"
@@ -38,6 +38,11 @@ def parse_args():
                         choices=['console'],
                         help="The type of UI that you want the human players to communicate with")
 
+    parser.add_argument('--game', '-g',
+                        default='tictactoe',
+                        choices=['tictactoe'],
+                        help="Choose the game you want to play.")
+
     args = parser.parse_args()
 
     if args.game_mode == "local":
@@ -49,6 +54,9 @@ def parse_args():
 
     if args.ui == "console":
         args.ui = TypeOfUI.CONSOLE
+
+    if args.game == "tictactoe":
+        args.game = GameName.TIC_TAC_TOE
 
     return args
 

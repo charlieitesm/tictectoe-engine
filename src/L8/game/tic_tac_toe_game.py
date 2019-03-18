@@ -11,7 +11,7 @@ from L8.token.token import Token
 
 class TicTacToeGame(Game, ABC):
 
-    _LEGAL_TOKENS = [Token("X"), Token("O")]
+    LEGAL_TOKENS = [Token("X"), Token("O")]
 
     def __init__(self, players: list):
         super().__init__(TicTacToeBoard(), players)
