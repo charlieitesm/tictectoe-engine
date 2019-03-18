@@ -9,3 +9,7 @@ class GameMode(Enum):
 
 class TypeOfUI(Enum):
     CONSOLE = "console"
+
+
+TOKEN = "token"
+MOVE = "move"

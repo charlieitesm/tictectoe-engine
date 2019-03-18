@@ -8,7 +8,7 @@ class UI(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def input(self, message: str):
+    def input(self, message: str) -> str:
         raise NotImplementedError
 
     @abstractmethod
@@ -21,7 +21,7 @@ class ConsoleUI(UI):
     def initialize_ui(self):
         print("Initializing console UI")
 
-    def input(self, message: str):
+    def input(self, message: str) -> str:
         input(f"{message}: ")
 
     def output(self, message: str):

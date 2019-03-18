@@ -2,6 +2,7 @@ from argparse import ArgumentParser
 
 from L8.constants.constants import GameMode, TypeOfUI
 from L8.game.game import GameFactory
+from L8.messages.english import SHUTTING_DOWN
 
 VERSION = "v0.1"
 
@@ -10,6 +11,7 @@ def main():
     args = parse_args()
     game = GameFactory.build_game(args)
     game.play()
+    print(SHUTTING_DOWN)
 
 
 def parse_args():
