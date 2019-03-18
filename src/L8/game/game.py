@@ -46,6 +46,7 @@ class Game(ABC):
 
         # Leave every concrete game to decide what it need to do after a game is completed
         self.finish_game()
+        self.tear_down_game()
 
     @abstractmethod
     def is_valid_move(self, move: dict) -> bool:
@@ -57,6 +58,10 @@ class Game(ABC):
 
     @abstractmethod
     def finish_game(self):
+        raise NotImplementedError
+
+    @abstractmethod
+    def tear_down_game(self):
         raise NotImplementedError
 
 
