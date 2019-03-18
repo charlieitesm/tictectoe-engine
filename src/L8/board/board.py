@@ -11,5 +11,5 @@ class Board(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def to_string(self):
+    def __str__(self) -> str:
         raise NotImplementedError
