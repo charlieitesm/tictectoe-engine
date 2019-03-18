@@ -11,7 +11,7 @@ class HumanPlayer(Player):
     PLAYER_NUM = 1
 
     def __init__(self, ui: UI, token: GameToken):
-        super().__init__()
+        super().__init__(token)
         self.ui = ui
         self.token = token
 
@@ -27,7 +27,7 @@ class HumanPlayer(Player):
             self.ui.output(INVALID_FORMAT_FOR_MOVE)
             self.ui.input(ENTER_YOUR_MOVE).split(",")
 
-        move = (int(move[0]), int[move[1]])
+        move = (int(move[0]), int(move[1]))
 
         return {
             GAME_TOKEN: self.token,
