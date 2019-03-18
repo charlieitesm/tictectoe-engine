@@ -15,3 +15,6 @@ class Player(ABC):
     @abstractmethod
     def generate_name(self) -> str:
         raise NotImplementedError
+
+    def __str__(self):
+        return self.name
