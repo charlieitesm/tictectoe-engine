@@ -13,7 +13,11 @@ class Game(ABC):
         self.players = None
 
     @abstractmethod
-    def initialize(self):
+    def initialize_resources(self):
+        raise NotImplementedError
+
+    @abstractmethod
+    def set_up_game(self):
         raise NotImplementedError
 
     def play(self):
@@ -46,7 +50,7 @@ class Game(ABC):
 
         # Leave every concrete game to decide what it need to do after a game is completed
         self.finish_game()
-        self.tear_down_game()
+        self.release_resources()
 
     @abstractmethod
     def is_valid_move(self, move: dict) -> bool:
@@ -61,7 +65,7 @@ class Game(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def tear_down_game(self):
+    def release_resources(self):
         raise NotImplementedError
 
 
