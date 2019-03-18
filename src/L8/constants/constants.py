@@ -15,5 +15,5 @@ class GameName(Enum):
     TIC_TAC_TOE = "tic_tac_toe"
 
 
-TOKEN = "token"
+GAME_TOKEN = "game_token"
 MOVE = "move"

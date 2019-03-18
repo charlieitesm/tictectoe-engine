@@ -1,7 +1,7 @@
 from abc import abstractmethod, ABC
 
 from L8.board.board import Board
-from L8.constants.constants import MOVE, TOKEN
+from L8.constants.constants import MOVE, GAME_TOKEN
 from L8.messages.english import ILLEGAL_MOVE
 from L8.player.player import Player
 
@@ -41,7 +41,7 @@ class Game(ABC):
 
                 # Apply the player's move to the board since we now know it was legal
                 move_x, move_y = move[MOVE]
-                self.board.current_state[move_x][move_y] = move[TOKEN]
+                self.board.current_state[move_x][move_y] = move[GAME_TOKEN]
 
                 is_game_over_yet = self.is_game_over()
 
@@ -71,9 +71,9 @@ class Game(ABC):
 
     def token_to_player(self, token_str: str) -> Player:
         """
-        Get the player holding the token represented by token_str
-        :param token_str: a str representing the token to look for
-        :return: a Player holding the token represented by token_str, None if no one was found
+        Get the player holding the game_token represented by token_str
+        :param token_str: a str representing the game_token to look for
+        :return: a Player holding the game_token represented by token_str, None if no one was found
         """
         for p in self.players:
             if token_str == str(p.token):

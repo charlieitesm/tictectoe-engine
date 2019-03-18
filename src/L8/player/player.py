@@ -1,12 +1,12 @@
 from abc import abstractmethod, ABC
 
 from L8.board.board import Board
-from L8.token.token import Token
+from L8.game.gametoken import GameToken
 
 
 class Player(ABC):
 
-    def __init__(self, token: Token):
+    def __init__(self, token: GameToken):
         self.name = self.generate_name()
         self.token = token
 

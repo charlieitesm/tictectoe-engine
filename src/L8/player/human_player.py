@@ -1,8 +1,8 @@
 from L8.board.board import Board
-from L8.constants.constants import TOKEN, MOVE
+from L8.constants.constants import GAME_TOKEN, MOVE
+from L8.game.gametoken import GameToken
 from L8.messages.english import ENTER_YOUR_MOVE, INVALID_FORMAT_FOR_MOVE
 from L8.player.player import Player
-from L8.token.token import Token
 from L8.ui.ui import UI
 
 
@@ -10,7 +10,7 @@ class HumanPlayer(Player):
 
     PLAYER_NUM = 1
 
-    def __init__(self, ui: UI, token: Token):
+    def __init__(self, ui: UI, token: GameToken):
         super().__init__()
         self.ui = ui
         self.token = token
@@ -30,6 +30,6 @@ class HumanPlayer(Player):
         move = (int(move[0]), int[move[1]])
 
         return {
-            TOKEN: self.token,
+            GAME_TOKEN: self.token,
             MOVE: move
         }

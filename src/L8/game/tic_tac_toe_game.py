@@ -3,15 +3,15 @@ from abc import ABC
 from L8.board.tic_tac_toe_board import TicTacToeBoard
 from L8.constants.constants import MOVE
 from L8.game.game import Game
+from L8.game.gametoken import GameToken
 from L8.game.local_game import LocalGame
 from L8.messages.english import TICTACTOE_ENDING_MESSAGE, TICTACTOE_DRAW_MESSAGE, WINNER_MESSAGE
 from L8.player.player import Player
-from L8.token.token import Token
 
 
 class TicTacToeGame(Game, ABC):
 
-    LEGAL_TOKENS = [Token("X"), Token("O")]
+    LEGAL_TOKENS = [GameToken("X"), GameToken("O")]
 
     def __init__(self, players: list):
         super().__init__(TicTacToeBoard(), players)
@@ -27,7 +27,7 @@ class TicTacToeGame(Game, ABC):
         1. It is made within the bounds of the board
         2. The space that is intended to be used is not already in use
 
-        :param move: a dict with the move and the token to be placed by player
+        :param move: a dict with the move and the game_token to be placed by player
         :param player: a Player making the move. For TicTacToe, the player is not relevant
         :return: True if the move is valid, False otherwise.
         """
@@ -52,7 +52,7 @@ class TicTacToeGame(Game, ABC):
         Determines if the game is already over
 
         In general, a TicTacToe game is over if:
-        1. There is a line of the same token horizontally, vertically or diagonally
+        1. There is a line of the same game_token horizontally, vertically or diagonally
         2. There are no more spaces to use
         :return:
         """
@@ -64,7 +64,7 @@ class TicTacToeGame(Game, ABC):
                     self.winner = self.token_to_player(val)
                     return True
 
-        # Check if there are no more places to put a token
+        # Check if there are no more places to put a game_token
         for row in self.board:
             for val in row:
                 if val is None:
@@ -86,7 +86,7 @@ class TicTacToeGame(Game, ABC):
         """
         Checks if there are exactly three tokens equal to val horizontally, vertically and diagonally on the board
         respective to x and y
-        :param val: a str representing the token to look for
+        :param val: a str representing the game_token to look for
         :param x: an int representing the original X coordinate of val
         :param y: an int representing the original Y coordinate of val
         :return: True if a line of successive val was found, False if otherwise
