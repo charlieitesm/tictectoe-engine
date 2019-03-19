@@ -13,7 +13,6 @@ class HumanPlayer(Player):
     def __init__(self, ui: UI, token: GameToken):
         super().__init__(token)
         self.ui = ui
-        self.token = token
 
     def generate_name(self) -> str:
         self_name = f"H_P{HumanPlayer.PLAYER_NUM}"
