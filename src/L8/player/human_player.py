@@ -10,8 +10,8 @@ class HumanPlayer(Player):
 
     PLAYER_NUM = 1
 
-    def __init__(self, ui: UI, token: GameToken):
-        super().__init__(token, ui)
+    def __init__(self, ui: UI, game_token: GameToken):
+        super().__init__(game_token, ui)
 
     def generate_name(self) -> str:
         self_name = f"H_P{HumanPlayer.PLAYER_NUM}"
@@ -28,6 +28,6 @@ class HumanPlayer(Player):
         move = (int(move[0]), int(move[1]))
 
         return {
-            GAME_TOKEN: self.token,
+            GAME_TOKEN: self.game_token,
             MOVE: move
         }

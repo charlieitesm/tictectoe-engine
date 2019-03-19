@@ -7,10 +7,10 @@ from L8.ui.ui import UI
 
 class Player(ABC):
 
-    def __init__(self, token: GameToken, ui: UI):
+    def __init__(self, game_token: GameToken, ui: UI):
         self.name = self.generate_name()
         self.ui = ui
-        self.token = token
+        self.game_token = game_token
 
     @abstractmethod
     def make_move(self, board: Board) -> dict:

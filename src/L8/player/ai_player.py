@@ -10,8 +10,8 @@ class AIPlayer(Player):
 
     PLAYER_NUM = 1
 
-    def __init__(self, brain: Brain, ui: UI, token: GameToken):
-        super().__init__(token, ui)
+    def __init__(self, brain: Brain, ui: UI, game_token: GameToken):
+        super().__init__(game_token, ui)
         self.brain = brain
 
     def generate_name(self) -> str:
@@ -23,6 +23,6 @@ class AIPlayer(Player):
         move = self.brain.calculate_next_move(board)
 
         return {
-            GAME_TOKEN: self.token,
+            GAME_TOKEN: self.game_token,
             MOVE: move
         }
