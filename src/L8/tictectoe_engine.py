@@ -1,6 +1,6 @@
 from argparse import ArgumentParser
 
-from L8.constants.constants import GameMode, TypeOfUI, GameName
+from L8.constants.constants import GameMode, TypeOfUI, GameName, GameLevel
 from L8.game.game_factory import GameFactory
 from L8.messages.english import SHUTTING_DOWN
 
@@ -43,6 +43,11 @@ def parse_args():
                         choices=['tictactoe'],
                         help="Choose the game you want to play.")
 
+    parser.add_argument('--level', '-l',
+                        default='easy',
+                        choices=['easy'],
+                        help="Choose the game you want to play.")
+
     args = parser.parse_args()
 
     if args.game_mode == "local":
@@ -57,6 +62,9 @@ def parse_args():
 
     if args.game == "tictactoe":
         args.game = GameName.TIC_TAC_TOE
+
+    if args.level == "easy":
+        args.level = GameLevel.EASY
 
     return args
 
