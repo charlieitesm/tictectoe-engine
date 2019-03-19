@@ -33,3 +33,16 @@ class ConsoleUI(UI):
     def output(self, message: str):
         print(message)
 
+
+class DummyUI(UI):
+    """
+    A dummy UI that doesn't do anything and is mostly used by AIPlayers
+    """
+    def initialize_ui(self):
+        pass
+
+    def input(self, message: str) -> str:
+        pass
+
+    def output(self, message: str):
+        pass
