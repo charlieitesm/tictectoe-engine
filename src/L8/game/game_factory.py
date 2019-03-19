@@ -6,7 +6,7 @@ from L8.game.tic_tac_toe_game import TicTacToeLocalGame, TicTacToeGame
 from L8.player.ai.tic_tac_toe_brain import TicTacToeBrain
 from L8.player.ai_player import AIPlayer
 from L8.player.human_player import HumanPlayer
-from L8.ui.ui import ConsoleUI, DummyUI
+from L8.ui.ui import ConsoleUI
 
 
 class GameFactory:
@@ -15,7 +15,6 @@ class GameFactory:
     def build_game(args: Namespace) -> Game:
         players = []
         ui = ConsoleUI()
-        dummy_ui = DummyUI()
         tokens = []
         new_game = None
         ai_brain = None
@@ -33,7 +32,7 @@ class GameFactory:
         # Build the AI Players, if needed and as many as needed to complete 2 players
         for i in range(len(players), 2):
             token_to_assign = tokens.pop(0)
-            players.append(AIPlayer(ai_brain, dummy_ui, token_to_assign))
+            players.append(AIPlayer(ai_brain, token_to_assign))
 
         # Build the game
         if args.game == GameName.TIC_TAC_TOE:

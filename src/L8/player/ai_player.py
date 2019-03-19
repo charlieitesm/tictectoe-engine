@@ -3,15 +3,17 @@ from L8.constants.constants import GAME_TOKEN, MOVE
 from L8.game.game_token import GameToken
 from L8.player.ai.brain import Brain
 from L8.player.player import Player
-from L8.ui.ui import UI
+from L8.ui.ui import DummyUI
 
 
 class AIPlayer(Player):
 
     PLAYER_NUM = 1
 
-    def __init__(self, brain: Brain, ui: UI, game_token: GameToken):
-        super().__init__(game_token, ui)
+    def __init__(self, brain: Brain, game_token: GameToken):
+        # An AI doesn't require a UI, so let's use a DummyUI so that the Game can broadcast messages to players but skip
+        #  messaging the AIPlayers
+        super().__init__(game_token, DummyUI())
         self.brain = brain
 
     def generate_name(self) -> str:
