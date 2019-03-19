@@ -3,7 +3,7 @@ from abc import ABC
 from L8.board.tic_tac_toe_board import TicTacToeBoard
 from L8.constants.constants import MOVE
 from L8.game.game import Game
-from L8.game.gametoken import GameToken
+from L8.game.game_token import GameToken
 from L8.game.local_game import LocalGame
 from L8.messages.english import TICTACTOE_ENDING_MESSAGE, TICTACTOE_DRAW_MESSAGE, WINNER_MESSAGE
 from L8.player.player import Player

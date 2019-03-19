@@ -1,6 +1,6 @@
 from L8.board.board import Board
 from L8.constants.constants import GAME_TOKEN, MOVE
-from L8.game.gametoken import GameToken
+from L8.game.game_token import GameToken
 from L8.messages.english import ENTER_YOUR_MOVE, INVALID_FORMAT_FOR_MOVE
 from L8.player.player import Player
 from L8.ui.ui import UI

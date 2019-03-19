@@ -1,7 +1,7 @@
 from abc import abstractmethod, ABC
 
 from L8.board.board import Board
-from L8.game.gametoken import GameToken
+from L8.game.game_token import GameToken
 from L8.ui.ui import UI
 
 
