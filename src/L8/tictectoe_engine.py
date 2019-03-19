@@ -26,7 +26,7 @@ def parse_args():
                         help="The kind of game mode you want to play: A locally hosted game, a client mode to connect"
                              "to a server, or start a server so that clients can connect to and play.")
 
-    parser.add_argument('--human-players', '-h',
+    parser.add_argument('--human-players', '-hp',
                         metavar='N',
                         choices=[0, 1, 2],
                         type=int,
