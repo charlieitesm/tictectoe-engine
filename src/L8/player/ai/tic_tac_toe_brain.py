@@ -10,8 +10,7 @@ class TicTacToeBrain(Brain):
     def __init__(self, level: GameLevel):
         super().__init__(level)
 
-    @staticmethod
-    def easy_mode(board: Board) -> tuple:
+    def easy_mode(self, board: Board) -> tuple:
         possible_moves = []
 
         for i, row in enumerate(board.current_state):
@@ -22,5 +21,5 @@ class TicTacToeBrain(Brain):
         move = random.choice(possible_moves)
         return move
 
-    def hard_mode(self, board: Board):
+    def hard_mode(self, board: Board) -> tuple:
         raise NotImplementedError

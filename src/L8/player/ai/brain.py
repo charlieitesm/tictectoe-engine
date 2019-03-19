@@ -15,9 +15,9 @@ class Brain(ABC):
             self.calculate_next_move = self.hard_mode
 
     @abstractmethod
-    def easy_mode(self, board: Board):
+    def easy_mode(self, board: Board) -> tuple:
         raise NotImplementedError
 
     @abstractmethod
-    def hard_mode(self, board: Board):
+    def hard_mode(self, board: Board) -> tuple:
         raise NotImplementedError
