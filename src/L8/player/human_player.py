@@ -23,9 +23,9 @@ class HumanPlayer(Player):
     def make_move(self, board: Board) -> dict:
         move = self.ui.input(ENTER_YOUR_MOVE).split(",")
 
-        while len(move) != 2 and not all([m.isdigit() for m in move]):
+        while not move or len(move) != 2 or not all([m.isdigit() for m in move]):
             self.ui.output(INVALID_FORMAT_FOR_MOVE)
-            self.ui.input(ENTER_YOUR_MOVE).split(",")
+            move = self.ui.input(ENTER_YOUR_MOVE).split(",")
 
         move = (int(move[0]), int(move[1]))
 

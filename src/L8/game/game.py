@@ -76,5 +76,5 @@ class Game(ABC):
         :return: a Player holding the game_token represented by token_str, None if no one was found
         """
         for p in self.players:
-            if token_str == str(p.token):
+            if token_str == p.token:
                 return p

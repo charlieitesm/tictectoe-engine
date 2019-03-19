@@ -1,4 +1,3 @@
-import random
 from argparse import Namespace
 
 from L8.constants.constants import GameName, GameMode
@@ -19,12 +18,11 @@ class GameFactory:
 
         # Get the appropriate tokens
         if args.game == GameName.TIC_TAC_TOE:
-            tokens = TicTacToeGame.LEGAL_TOKENS
+            tokens = TicTacToeGame.LEGAL_TOKENS.copy()
 
         # Build the player instances
         for i in range(args.human_players):
-            # Randomize the assignment of tokens
-            token_to_assign = tokens.pop(random.randint(0, len(tokens)))
+            token_to_assign = tokens.pop(0)
             players.append(HumanPlayer(ui, token_to_assign))
 
         # Build the game

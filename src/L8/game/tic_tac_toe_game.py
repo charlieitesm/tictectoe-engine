@@ -33,14 +33,14 @@ class TicTacToeGame(Game, ABC):
         """
 
         move_x, move_y = move[MOVE]
-        board_size = len(self.board)
+        board_size = len(self.board.current_state)
 
         # Check if the move is within bounds
-        if not 0 <= move_x <= board_size or not 0 <= move_y <= board_size:
+        if not 0 <= move_x < board_size or not 0 <= move_y < board_size:
             return False
 
         # Check the space is not in use already
-        value_at_board = self.board[move_x][move_y]
+        value_at_board = self.board.current_state[move_x][move_y]
 
         if value_at_board is not None:
             return False
@@ -57,15 +57,19 @@ class TicTacToeGame(Game, ABC):
         :return:
         """
         # Check if we have a winner
-        for x, row in enumerate(self.board):
+        for x, row in enumerate(self.board.current_state):
             for y, val in enumerate(row):
+
+                # There will be no winner combination on this row/column
+                if val is None:
+                    continue
 
                 if self.check_complete_line_in_board(val, x, y):
                     self.winner = self.token_to_player(val)
                     return True
 
         # Check if there are no more places to put a game_token
-        for row in self.board:
+        for row in self.board.current_state:
             for val in row:
                 if val is None:
                     return False
@@ -77,7 +81,7 @@ class TicTacToeGame(Game, ABC):
         :return:
         """
         winner_result = TICTACTOE_DRAW_MESSAGE if not self.winner else f"{WINNER_MESSAGE} {self.winner}"
-        final_message = "\n".join([TICTACTOE_ENDING_MESSAGE, self.board, winner_result])
+        final_message = "\n".join([TICTACTOE_ENDING_MESSAGE, str(self.board), winner_result])
 
         for p in self.players:
             p.ui.output(final_message)
@@ -92,11 +96,11 @@ class TicTacToeGame(Game, ABC):
         :return: True if a line of successive val was found, False if otherwise
         """
         num_of_same_tokens = 0
-        len_of_board = len(self.board)
+        len_of_board = len(self.board.current_state)
 
         # Check horizontally
-        for i in range(len_of_board):
-            if self.board[i][y] == val:
+        for j in range(len_of_board):
+            if self.board.current_state[x][j] == val:
                 num_of_same_tokens += 1
             else:
                 break
@@ -107,8 +111,8 @@ class TicTacToeGame(Game, ABC):
         num_of_same_tokens = 0
 
         # Check vertically
-        for j in range(len_of_board):
-            if self.board[x][j] == val:
+        for i in range(len_of_board):
+            if self.board.current_state[i][y] == val:
                 num_of_same_tokens += 1
             else:
                 break
@@ -123,7 +127,7 @@ class TicTacToeGame(Game, ABC):
 
             # Left to right:
             for i in range(len_of_board):
-                if val != self.board[i][i]:
+                if val != self.board.current_state[i][i]:
                     break
                 else:
                     num_of_same_tokens += 1
@@ -134,10 +138,11 @@ class TicTacToeGame(Game, ABC):
             num_of_same_tokens = 0
 
             # Right to left
-            for i in range(len_of_board, 0, -1):
-                for j in range(len_of_board):
-                    if val == self.board[i][j]:
-                        num_of_same_tokens += 1
+            for k in range(len_of_board):
+                i = 0 + k
+                j = 2 - k
+                if val == self.board.current_state[i][j]:
+                    num_of_same_tokens += 1
 
             return num_of_same_tokens == 3
 

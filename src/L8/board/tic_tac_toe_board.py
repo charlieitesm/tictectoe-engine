@@ -22,6 +22,6 @@ class TicTacToeBoard(Board):
         :return: a str representation of the current board
         """
         representation = "\n".join(
-            "|".join(["{:^3}".format(val) if val is not None
+            "|".join(["{:^3}".format(str(val)) if val is not None
                       else "{:3}".format("") for val in row]) for row in self.current_state)
         return representation
