@@ -10,6 +10,8 @@ from L8.ui.ui import DummyUI
 class TestHumanPlayer(TestCase):
 
     def setUp(self):
+        HumanPlayer.PLAYER_NUM = 1
+
         self.ui = DummyUI()
         self.game_token = GameToken("X")
         self.under_test = HumanPlayer(self.ui, self.game_token)

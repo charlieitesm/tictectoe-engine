@@ -10,6 +10,7 @@ from L8.player.ai_player import AIPlayer
 class TestAIPlayer(TestCase):
 
     def setUp(self):
+        AIPlayer.PLAYER_NUM = 1
         self.game_token = GameToken("X")
         self.brain = TicTacToeBrain(GameLevel.EASY)
         self.under_test = AIPlayer(self.brain, self.game_token)
