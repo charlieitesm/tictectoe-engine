@@ -86,7 +86,7 @@ class TicTacToeGame(Game, ABC):
         for p in self.players:
             p.ui.output(final_message)
 
-    def check_complete_line_in_board(self, val: str, x: int, y: int):
+    def check_complete_line_in_board(self, val: GameToken, x: int, y: int):
         """
         Checks if there are exactly three tokens equal to val horizontally, vertically and diagonally on the board
         respective to x and y
