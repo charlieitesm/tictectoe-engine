@@ -1,0 +1,3 @@
+[run]
+omit =
+    L8/board/board.py
