@@ -20,13 +20,13 @@ class Brain(ABC):
             raise ValueError("An invalid GameLevel was provided to the Brain!")
 
     @abstractmethod
-    def easy_mode(self, board: Board, game_token: GameToken) -> tuple:
+    def easy_mode(self, board: Board, game_token: GameToken) -> tuple:  # pragma: no cover
         raise NotImplementedError
 
     @abstractmethod
-    def normal_mode(self, board: Board, game_token: GameToken) -> tuple:
+    def normal_mode(self, board: Board, game_token: GameToken) -> tuple:  # pragma: no cover
         raise NotImplementedError
 
     @abstractmethod
-    def hard_mode(self, board: Board, game_token: GameToken) -> tuple:
+    def hard_mode(self, board: Board, game_token: GameToken) -> tuple:  # pragma: no cover
         raise NotImplementedError

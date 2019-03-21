@@ -1,7 +1,7 @@
 from abc import abstractmethod, ABC
 
 
-class UI(ABC):
+class UI(ABC): # pragma: no cover
 
     def __init__(self):
         self.initialize_ui()
@@ -19,7 +19,7 @@ class UI(ABC):
         raise NotImplementedError
 
 
-class ConsoleUI(UI):
+class ConsoleUI(UI): # pragma: no cover
 
     def __init__(self):
         super().__init__()
@@ -34,7 +34,7 @@ class ConsoleUI(UI):
         print(message)
 
 
-class DummyUI(UI):
+class DummyUI(UI): # pragma: no cover
     """
     A dummy UI that doesn't do anything and is mostly used by AIPlayers
     """

@@ -15,14 +15,14 @@ class Game(ABC):
         self.winner = None
 
     @abstractmethod
-    def initialize_resources(self):
+    def initialize_resources(self):  # pragma: no cover
         raise NotImplementedError
 
     @abstractmethod
-    def set_up_game(self):
+    def set_up_game(self):  # pragma: no cover
         raise NotImplementedError
 
-    def play(self):
+    def play(self):  # pragma: no cover
         # This will contain the main game loop
         is_game_over_yet = False
 
@@ -55,19 +55,19 @@ class Game(ABC):
         self.release_resources()
 
     @abstractmethod
-    def is_valid_move(self, move: dict, player: Player) -> bool:
+    def is_valid_move(self, move: dict, player: Player) -> bool:  # pragma: no cover
         raise NotImplementedError
 
     @abstractmethod
-    def is_game_over(self) -> bool:
+    def is_game_over(self) -> bool:  # pragma: no cover
         raise NotImplementedError
 
     @abstractmethod
-    def finish_game(self):
+    def finish_game(self):  # pragma: no cover
         raise NotImplementedError
 
     @abstractmethod
-    def release_resources(self):
+    def release_resources(self):  # pragma: no cover
         raise NotImplementedError
 
     def token_to_player(self, token_str: GameToken) -> Player:
