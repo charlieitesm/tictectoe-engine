@@ -17,6 +17,7 @@ class GameName(Enum):
 
 class GameLevel(Enum):
     EASY = "easy"
+    NORMAL = "normal"
     HARD = "hard"
 
 

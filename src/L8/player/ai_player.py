@@ -22,7 +22,7 @@ class AIPlayer(Player):
         return self_name
 
     def make_move(self, board: Board) -> dict:
-        move = self.brain.calculate_next_move(board)
+        move = self.brain.calculate_next_move(board, self.game_token)
 
         return {
             GAME_TOKEN: self.game_token,
