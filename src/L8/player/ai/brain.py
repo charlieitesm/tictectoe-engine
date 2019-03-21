@@ -15,9 +15,9 @@ class Brain(ABC):
             self.calculate_next_move = self.hard_mode
 
     @abstractmethod
-    def easy_mode(self, board: Board) -> tuple:
+    def easy_mode(self, board: Board) -> tuple:  # pragma: no cover
         raise NotImplementedError
 
     @abstractmethod
-    def hard_mode(self, board: Board) -> tuple:
+    def hard_mode(self, board: Board) -> tuple:  # pragma: no cover
         raise NotImplementedError

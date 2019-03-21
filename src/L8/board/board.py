@@ -7,9 +7,9 @@ class Board(ABC):
         self.current_state = []
 
     @abstractmethod
-    def init_board(self):
+    def init_board(self): # pragma: no cover
         raise NotImplementedError
 
     @abstractmethod
-    def __str__(self) -> str:
+    def __str__(self) -> str: # pragma: no cover
         raise NotImplementedError

@@ -13,11 +13,11 @@ class Player(ABC):
         self.game_token = game_token
 
     @abstractmethod
-    def make_move(self, board: Board) -> dict:
+    def make_move(self, board: Board) -> dict:  # pragma: no cover
         raise NotImplementedError
 
     @abstractmethod
-    def generate_name(self) -> str:
+    def generate_name(self) -> str:  # pragma: no cover
         raise NotImplementedError
 
     def __str__(self):
