@@ -2,6 +2,7 @@ from abc import abstractmethod, ABC
 
 from L8.board.board import Board
 from L8.constants.constants import MOVE, GAME_TOKEN
+from L8.game.game_token import GameToken
 from L8.messages.english import ILLEGAL_MOVE
 from L8.player.player import Player
 
@@ -69,7 +70,7 @@ class Game(ABC):
     def release_resources(self):
         raise NotImplementedError
 
-    def token_to_player(self, token_str: str) -> Player:
+    def token_to_player(self, token_str: GameToken) -> Player:
         """
         Get the player holding the game_token represented by token_str
         :param token_str: a str representing the game_token to look for

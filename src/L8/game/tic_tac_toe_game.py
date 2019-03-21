@@ -58,16 +58,11 @@ class TicTacToeGame(Game, ABC):
         :return:
         """
         # Check if we have a winner
-        for x, row in enumerate(self.board.current_state):
-            for y, val in enumerate(row):
+        winning_token = TicTacToeGameUtil.get_winner(self.board)
 
-                # There will be no winner combination on this row/column
-                if val is None:
-                    continue
-
-                if TicTacToeGameUtil.check_complete_line_in_board(self.board, val, x, y):
-                    self.winner = self.token_to_player(val)
-                    return True
+        if winning_token:
+            self.winner = self.token_to_player(winning_token)
+            return True
 
         # Check if there are no more places to put a game_token
         for row in self.board.current_state:
@@ -94,6 +89,19 @@ class TicTacToeLocalGame(TicTacToeGame, LocalGame):
 
 
 class TicTacToeGameUtil:
+
+    @staticmethod
+    def get_winner(board: Board) -> GameToken:
+        for x, row in enumerate(board.current_state):
+            for y, gt in enumerate(row):
+
+                # There will be no winner combination on this row/column
+                if gt is None:
+                    continue
+
+                if TicTacToeGameUtil.check_complete_line_in_board(board, gt, x, y):
+                    winner_token = gt
+                    return winner_token
 
     @staticmethod
     def check_complete_line_in_board(board: Board, game_token: GameToken, x: int, y: int):
