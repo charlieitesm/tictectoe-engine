@@ -12,12 +12,7 @@ class TicTacToeBrain(Brain):
         super().__init__(level)
 
     def easy_mode(self, board: Board, game_token: GameToken) -> tuple:
-        possible_moves = []
-
-        for i, row in enumerate(board.current_state):
-            for j, val in enumerate(row):
-                if val is None:
-                    possible_moves.append((i, j))
+        possible_moves = board.get_empty_spaces_coordinates()
 
         move = random.choice(possible_moves)
         return move
