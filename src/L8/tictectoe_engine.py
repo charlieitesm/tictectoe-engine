@@ -45,7 +45,7 @@ def parse_args():
 
     parser.add_argument('--level', '-l',
                         default='easy',
-                        choices=['easy'],
+                        choices=['easy', 'hard'],
                         help="Choose the game you want to play.")
 
     args = parser.parse_args()
@@ -65,6 +65,8 @@ def parse_args():
 
     if args.level == "easy":
         args.level = GameLevel.EASY
+    elif args.level == "hard":
+        args.level = GameLevel.HARD
 
     return args
 
