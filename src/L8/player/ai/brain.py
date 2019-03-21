@@ -12,11 +12,19 @@ class Brain(ABC):
 
         if level == GameLevel.EASY:
             self.calculate_next_move = self.easy_mode
-        else:
+        elif level == GameLevel.HARD:
             self.calculate_next_move = self.hard_mode
+        elif level == GameLevel.NORMAL:
+            self.calculate_next_move = self.normal_mode
+        else:
+            raise ValueError("An invalid GameLevel was provided to the Brain!")
 
     @abstractmethod
     def easy_mode(self, board: Board, game_token: GameToken) -> tuple:
+        raise NotImplementedError
+
+    @abstractmethod
+    def normal_mode(self, board: Board, game_token: GameToken) -> tuple:
         raise NotImplementedError
 
     @abstractmethod

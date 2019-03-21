@@ -20,6 +20,15 @@ class TicTacToeBrain(Brain):
         move = random.choice(possible_moves)
         return move
 
+    def normal_mode(self, board: Board, game_token: GameToken) -> tuple:
+        # Flip a coin and see if the Brain should act intelligently or not this turn
+        flip = random.randint(0, 1)
+
+        if flip == 0:
+            return self.easy_mode(board, game_token)
+        else:
+            return self.hard_mode(board, game_token)
+
     def hard_mode(self, board: Board, game_token: GameToken) -> tuple:
         opponent_token = [t for t in TicTacToeGame.LEGAL_TOKENS if t is not game_token][0]
         minimax_result = self.minimax(board, game_token, opponent_token, is_ais_turn=True)

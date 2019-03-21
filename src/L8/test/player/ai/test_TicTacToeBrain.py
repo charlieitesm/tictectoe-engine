@@ -31,6 +31,20 @@ class TestTicTacToeBrain(TestCase):
 
         self.assertIsNotNone(result)
 
+    def test_normal_mode(self):
+        test_board = [
+            [self.x_token, None, None],
+            [self.o_token, None, None],
+            [None, None, None],
+        ]
+        board = TicTacToeBoard()
+        board.current_state = test_board
+
+        under_test = TicTacToeBrain(GameLevel.NORMAL)
+        result = under_test.calculate_next_move(board, self.o_token)
+
+        self.assertIsNotNone(result)
+
     def test_hard_mode(self):
         test_board = [
             [self.x_token, None, None],
