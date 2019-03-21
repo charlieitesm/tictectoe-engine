@@ -34,19 +34,8 @@ class TicTacToeGame(Game, ABC):
         """
 
         move_x, move_y = move[MOVE]
-        board_size = len(self.board.current_state)
 
-        # Check if the move is within bounds
-        if not 0 <= move_x < board_size or not 0 <= move_y < board_size:
-            return False
-
-        # Check the space is not in use already
-        value_at_board = self.board.current_state[move_x][move_y]
-
-        if value_at_board is not None:
-            return False
-
-        return True
+        return TicTacToeGameUtil.is_legal_tic_tac_toe_move(self.board, move_x, move_y)
 
     def is_game_over(self) -> bool:
         """
@@ -91,6 +80,33 @@ class TicTacToeLocalGame(TicTacToeGame, LocalGame):
 class TicTacToeGameUtil:
 
     @staticmethod
+    def is_legal_tic_tac_toe_move(board: Board, move_x: int, move_y: int) -> bool:
+        """
+        Determines if the move made by player is legal on this board
+
+        In general, a Tic Tac Toe is valid if:
+        1. It is made within the bounds of the board
+        2. The space that is intended to be used is not already in use
+        :param board: a Board where you want to check the move
+        :param move_x: an int with the x coordinate for the move
+        :param move_y: an int with the y coordinate for the move
+        :return: True if the move is valid, False otherwise.
+        """
+        board_size = len(board.current_state)
+
+        # Check if the move is within bounds
+        if not 0 <= move_x < board_size or not 0 <= move_y < board_size:
+            return False
+
+        # Check the space is not in use already
+        value_at_board = board.current_state[move_x][move_y]
+
+        if value_at_board is not None:
+            return False
+
+        return True
+
+    @staticmethod
     def get_winner(board: Board) -> GameToken:
         for x, row in enumerate(board.current_state):
             for y, gt in enumerate(row):
@@ -104,7 +120,7 @@ class TicTacToeGameUtil:
                     return winner_token
 
     @staticmethod
-    def check_complete_line_in_board(board: Board, game_token: GameToken, x: int, y: int):
+    def check_complete_line_in_board(board: Board, game_token: GameToken, x: int, y: int) -> bool:
         """
         Checks if there are exactly three tokens equal to val horizontally, vertically and diagonally on the board
         respective to x and y
