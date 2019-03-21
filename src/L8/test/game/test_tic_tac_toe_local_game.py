@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from L8.constants.constants import MOVE, GAME_TOKEN
-from L8.game.tic_tac_toe_game import TicTacToeLocalGame
+from L8.game.tic_tac_toe_game import TicTacToeLocalGame, TicTacToeGameUtil
 from L8.player.human_player import HumanPlayer
 from L8.ui.ui import DummyUI
 
@@ -121,7 +121,7 @@ class TestTicTacToeLocalGame(TestCase):
         ]
         self.under_test.board.current_state = test_board
         # Horizontal
-        self.assertTrue(self.under_test.check_complete_line_in_board(o, 0, 0))
+        self.assertTrue(TicTacToeGameUtil.check_complete_line_in_board(self.under_test.board, o, 0, 0))
 
         test_board = [
             [o, x, o],
@@ -130,7 +130,7 @@ class TestTicTacToeLocalGame(TestCase):
         ]
         self.under_test.board.current_state = test_board
         # Vertical
-        self.assertTrue(self.under_test.check_complete_line_in_board(x, 0, 1))
+        self.assertTrue(TicTacToeGameUtil.check_complete_line_in_board(self.under_test.board, x, 0, 1))
 
         test_board = [
             [x, o, o],
@@ -139,7 +139,7 @@ class TestTicTacToeLocalGame(TestCase):
         ]
         self.under_test.board.current_state = test_board
         # Diagonal
-        self.assertTrue(self.under_test.check_complete_line_in_board(x, 2, 2))
+        self.assertTrue(TicTacToeGameUtil.check_complete_line_in_board(self.under_test.board, x, 2, 2))
 
     def test_local_methods(self):
         # These methods shouldn't do anything
