@@ -1,5 +1,6 @@
 from abc import ABC
 
+from L8.board.board import Board
 from L8.board.tic_tac_toe_board import TicTacToeBoard
 from L8.constants.constants import MOVE
 from L8.game.game import Game
@@ -64,7 +65,7 @@ class TicTacToeGame(Game, ABC):
                 if val is None:
                     continue
 
-                if self.check_complete_line_in_board(val, x, y):
+                if TicTacToeGameUtil.check_complete_line_in_board(self.board, val, x, y):
                     self.winner = self.token_to_player(val)
                     return True
 
@@ -86,21 +87,31 @@ class TicTacToeGame(Game, ABC):
         for p in self.players:
             p.ui.output(final_message)
 
-    def check_complete_line_in_board(self, val: GameToken, x: int, y: int):
+
+class TicTacToeLocalGame(TicTacToeGame, LocalGame):
+    def __init__(self, players: list):
+        super().__init__(players)
+
+
+class TicTacToeGameUtil:
+
+    @staticmethod
+    def check_complete_line_in_board(board: Board, game_token: GameToken, x: int, y: int):
         """
         Checks if there are exactly three tokens equal to val horizontally, vertically and diagonally on the board
         respective to x and y
-        :param val: a str representing the game_token to look for
+        :param board: the Board in which to check the line
+        :param game_token: a str representing the game_token to look for
         :param x: an int representing the original X coordinate of val
         :param y: an int representing the original Y coordinate of val
         :return: True if a line of successive val was found, False if otherwise
         """
         num_of_same_tokens = 0
-        len_of_board = len(self.board.current_state)
+        len_of_board = len(board.current_state)
 
         # Check horizontally
         for j in range(len_of_board):
-            if self.board.current_state[x][j] == val:
+            if board.current_state[x][j] == game_token:
                 num_of_same_tokens += 1
             else:
                 break
@@ -112,7 +123,7 @@ class TicTacToeGame(Game, ABC):
 
         # Check vertically
         for i in range(len_of_board):
-            if self.board.current_state[i][y] == val:
+            if board.current_state[i][y] == game_token:
                 num_of_same_tokens += 1
             else:
                 break
@@ -127,7 +138,7 @@ class TicTacToeGame(Game, ABC):
 
             # Left to right:
             for i in range(len_of_board):
-                if val != self.board.current_state[i][i]:
+                if game_token != board.current_state[i][i]:
                     break
                 else:
                     num_of_same_tokens += 1
@@ -141,7 +152,7 @@ class TicTacToeGame(Game, ABC):
             for k in range(len_of_board):
                 i = 0 + k
                 j = 2 - k
-                if val == self.board.current_state[i][j]:
+                if game_token == board.current_state[i][j]:
                     num_of_same_tokens += 1
 
             return num_of_same_tokens == 3
@@ -149,7 +160,3 @@ class TicTacToeGame(Game, ABC):
         else:
             return False
 
-
-class TicTacToeLocalGame(TicTacToeGame, LocalGame):
-    def __init__(self, players: list):
-        super().__init__(players)
