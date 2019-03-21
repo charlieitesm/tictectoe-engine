@@ -27,6 +27,6 @@ class TestTicTacToeBrain(TestCase):
         board.current_state = test_board
 
         under_test = TicTacToeBrain(GameLevel.EASY)
-        result = under_test.calculate_next_move(board)
+        result = under_test.calculate_next_move(board, self.o_token)
 
         self.assertIsNotNone(result)

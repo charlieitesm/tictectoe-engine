@@ -34,9 +34,11 @@ class TestAIPlayer(TestCase):
     def test_make_move(self):
         # Mock the brain
         expected = (0, 1)
-        self.under_test.brain.calculate_next_move = lambda msg: expected
+        board = TicTacToeBoard()
 
-        result = self.under_test.make_move(TicTacToeBoard())
+        self.under_test.brain.calculate_next_move = lambda b, gt: expected
+
+        result = self.under_test.make_move(board)
         self.assertIsNotNone(result)
         self.assertTrue(MOVE in result)
         self.assertTrue(GAME_TOKEN in result)
